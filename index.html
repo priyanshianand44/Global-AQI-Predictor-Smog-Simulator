@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global AQI Predictor & Atmospheric Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts for modern typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>🌍 Global AQI Predictor & Smog Simulator</h1>
+      <p class="subtitle">Interactive air quality analysis and live atmospheric modeling</p>
+      
+      <!-- City Selector -->
+      <div class="city-selector-wrapper">
+        <label for="citySelect">Select City:</label>
+        <select id="citySelect">
+          <option value="delhi" selected>New Delhi, India</option>
+          <option value="lahore">Lahore, Pakistan</option>
+          <option value="beijing">Beijing, China</option>
+          <option value="ulaanbaatar">Ulaanbaatar, Mongolia</option>
+          <option value="la">Los Angeles, USA</option>
+          <option value="london">London, UK</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="grid-layout">
+      <!-- Left Column: Controls & Inputs -->
+      <section class="card controls-card">
+        <h2>🛠️ Simulation Controls</h2>
+        
+        <div class="slider-group">
+          <label>Wind Speed: <span id="windVal">5</span> km/h</label>
+          <input type="range" id="wind" min="1" max="35" value="5">
+        </div>
+
+        <div class="slider-group">
+          <label>Temperature: <span id="tempVal">18</span> °C</label>
+          <input type="range" id="temp" min="-5" max="45" value="18">
+        </div>
+
+        <div class="slider-group">
+          <label>Humidity: <span id="humVal">75</span> %</label>
+          <input type="range" id="hum" min="10" max="100" value="75">
+        </div>
+
+        <div class="slider-group">
+          <label>Regional Biomass / Fire Count: <span id="stubbleVal">1200</span></label>
+          <input type="range" id="stubble" min="0" max="4000" value="1200">
+        </div>
+
+        <div class="slider-group">
+          <label>Traffic / Emission Density: <span id="trafficVal">100</span>%</label>
+          <input type="range" id="traffic" min="20" max="200" value="100">
+        </div>
+
+        <button id="fetchLiveBtn" class="btn">🔄 Fetching Live Data for City</button>
+      </section>
+
+      <!-- Right Column: Outputs & Visuals -->
+      <section class="card display-card">
+        <div class="aqi-header">
+          <div>
+            <p class="label">Predicted Air Quality Index</p>
+            <h1 id="aqiValue">--</h1>
+          </div>
+          <span id="aqiBadge" class="badge">Calculating...</span>
+        </div>
+
+        <!-- Health Impact Metric -->
+        <div class="health-impact">
+          <h3>🚬 Health Impact Equivalent</h3>
+          <p><strong id="cigCount">0.0</strong> cigarettes equivalent per day</p>
+          <p id="healthAdvice" class="advice-text">Loading health recommendations...</p>
+        </div>
+
+        <!-- Smog Simulation Canvas with Landmark -->
+        <div class="canvas-wrapper">
+          <canvas id="smogCanvas" width="500" height="260"></canvas>
+          <div class="canvas-caption">Simulated Atmospheric Haze & Landmark View</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
